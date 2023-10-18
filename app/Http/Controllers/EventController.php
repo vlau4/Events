@@ -31,8 +31,8 @@ class EventController extends Controller
     // Store Event Data
     public function store(Request $request) {
         $formFields = $request->validate([
-            'title' => 'required',
-            'company' => ['required', Rule::unique('events', 'company')],
+            'name' => 'required',
+            'category' => ['required'],
             'location' => 'required',
             'website' => ['required', 'regex:/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i'],
             'email' => ['required', 'email'],
@@ -64,8 +64,8 @@ class EventController extends Controller
         }
         
         $formFields = $request->validate([
-            'title' => 'required',
-            'company' => ['required'],
+            'name' => 'required',
+            'caterory' => ['required'],
             'location' => 'required',
             'website' => ['required', 'regex:/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i'],
             'email' => ['required', 'email'],
@@ -76,6 +76,8 @@ class EventController extends Controller
         if($request->hasFile('logo')) {
             $formFields['logo'] = $request->file('logo')->store('logos', 'public');
         }
+
+        $formFields['confirmed'] = 0;
 
         $event->update($formFields);
 
@@ -92,9 +94,23 @@ class EventController extends Controller
         return redirect('/')->with('message', 'Event deleted successfully!');
     }
 
-    // Show Edit Form
-    public function manage(Event $event) {
+    // Manage Events
+    public function manage() {
         return view('events.manage', ['events' => request()->user()->events()->get()]);
+    }
+
+    // Show Manager to Confirm Events
+    public function showConfirm(Event $event) {
+        return view('roles.manager.confirm', ['events' => request()->user()->events()->get()]);
+    }
+
+    // Confirm Events
+    public function confirm(Event $event) {
+        $formFields['confirmed'] = 1;
+
+        $event->update($formFields);
+
+        return back()->with('message', 'Event confirmed successfully!');
     }
 
 }

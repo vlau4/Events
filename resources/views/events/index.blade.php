@@ -5,7 +5,9 @@
     <div class="lg:grid lg:grid-cols-2 gap-4 space-y-4 md:space-y-0 mx-4">
     @unless(count($events) == 0)
         @foreach($events as $event)
-            <x-event-card :event="$event"/>
+            @if($event->confirmed == 1)
+                <x-event-card :event="$event"/>
+            @endif
         @endforeach
     @else
         <p>No events found.</p>

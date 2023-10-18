@@ -1,25 +1,25 @@
 <x-layout>
     <x-card class="p-10 max-w-lg mx-auto mt-24">
         <header class="text-center">
-            <h2 class="text-2xl font-bold uppercase mb-1">Edit the Gig</h2>
-            <p class="mb-4">Edit: {{$event->title}}</p>
+            <h2 class="text-2xl font-bold uppercase mb-1">Edit the Event</h2>
+            <p class="mb-4">Edit: {{$event->name}}</p>
         </header>
 
         <form method="POST" action="/events/{{$event->id}}" enctype="multipart/form-data">
             @csrf {{-- protection--}}
             @method('PUT')
             <div class="mb-6">
-                <label for="company" class="inline-block text-lg mb-2">Company Name</label>
-                <input type="text" class="border border-gray-200 rounded p-2 w-full" name="company" value="{{$event->company}}"/>
-                @error('company')
+                <label for="category" class="inline-block text-lg mb-2">Category</label>
+                <input type="text" class="border border-gray-200 rounded p-2 w-full" name="category" value="{{$event->category}}"/>
+                @error('category')
                     <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                 @enderror
             </div>
 
             <div class="mb-6">
-                <label for="title" class="inline-block text-lg mb-2">Job Title</label>
-                <input type="text" class="border border-gray-200 rounded p-2 w-full" name="title" placeholder="Example: Senior Laravel Developer" value="{{$event->title}}"/>
-                @error('title')
+                <label for="name" class="inline-block text-lg mb-2">Event Name</label>
+                <input type="text" class="border border-gray-200 rounded p-2 w-full" name="name" placeholder="Example: Senior Laravel Developer" value="{{$event->name}}"/>
+                @error('name')
                     <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                 @enderror
             </div>
@@ -62,7 +62,7 @@
 
             <div class="mb-6">
                 <label for="logo" class="inline-block text-lg mb-2">
-                    Company Logo
+                    Event Logo
                 </label>
                 <input type="file" class="border border-gray-200 rounded p-2 w-full" name="logo"/>
                 

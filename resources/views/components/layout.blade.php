@@ -20,7 +20,7 @@
             },
         };
     </script>
-    <title>Events | Where a boredom does not exist.</title>
+    <title>EventManager | Where a boredom does not exist.</title>
 </head>
 <body class="mb-48">
     <nav class="flex justify-between items-center mb-4">
@@ -33,6 +33,12 @@
                 <span class="font-bold uppercase">
                     {{auth()->user()->name}}
                 </span>
+            </li>
+            <li>
+                <a href="/users/manage" class="hover:text-laravel"><i class="fa-solid fa-gear"></i> Manage Users</a>
+            </li>
+            <li>
+                <a href="/events/confirm" class="hover:text-laravel"><i class="fa-solid fa-gear"></i> Confirm Events</a>
             </li>
             <li>
                 <a href="/events/manage" class="hover:text-laravel"><i class="fa-solid fa-gear"></i> Manage Events</a>

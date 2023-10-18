@@ -26,6 +26,11 @@ use App\Http\Controllers\EventController;
 // update - Update event
 // destroy - Delete event
 
+// ______ MANAGER ______
+Route::get('/events/confirm', [EventController::class, 'showConfirm'])->middleware('auth');
+
+Route::post('/events/{event}/confirmation', [EventController::class, 'confirm'])->middleware('auth');
+
 // All events
 Route::get('/', [EventController::class, 'index']);
 
@@ -38,17 +43,17 @@ Route::post('/events', [EventController::class, 'store'])->middleware('auth');
 // Show Edit Form
 Route::get('/events/{event}/edit', [EventController::class, 'edit'])->middleware('auth');
 
-// Update Event
-Route::put('/events/{event}', [EventController::class, 'update'])->middleware('auth');
-
-// Delete Event
-Route::delete('/events/{event}', [EventController::class, 'destroy'])->middleware('auth');
-
 // Manage Events
 Route::get('/events/manage', [EventController::class, 'manage'])->middleware('auth');
 
 // Single Event
 Route::get('/events/{event}', [EventController::class, 'show']);
+
+// Update Event
+Route::put('/events/{event}', [EventController::class, 'update'])->middleware('auth');
+
+// Delete Event
+Route::delete('/events/{event}', [EventController::class, 'destroy'])->middleware('auth');
 
 // Show Register/Create Form
 Route::get('/register', [UserController::class, 'create'])->middleware('guest');
@@ -64,3 +69,11 @@ Route::get('/login', [UserController::class, 'login'])->name('login')->middlewar
 
 // Log In User
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
+
+// ______ ADMIN: ______
+
+// Manage Users
+Route::get('/users/manage', [UserController::class, 'manage'])->middleware('auth');
+
+// Edit User Role
+// Route::get('/users/{user}/edit', [UserController::class, 'edit']);

@@ -8,17 +8,17 @@
         <form method="POST" action="/events" enctype="multipart/form-data">
             @csrf {{-- protection--}}
             <div class="mb-6">
-                <label for="company" class="inline-block text-lg mb-2">Company Name</label>
-                <input type="text" class="border border-gray-200 rounded p-2 w-full" name="company" value="{{old('company')}}"/>
-                @error('company')
+                <label for="category" class="inline-block text-lg mb-2">Category</label>
+                <input type="text" class="border border-gray-200 rounded p-2 w-full" name="category" value="{{old('category')}}"/>
+                @error('category')
                     <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                 @enderror
             </div>
 
             <div class="mb-6">
-                <label for="title" class="inline-block text-lg mb-2">Job Title</label>
-                <input type="text" class="border border-gray-200 rounded p-2 w-full" name="title" placeholder="Example: Senior Laravel Developer" value="{{old('title')}}"/>
-                @error('title')
+                <label for="name" class="inline-block text-lg mb-2">Event Name</label>
+                <input type="text" class="border border-gray-200 rounded p-2 w-full" name="name" placeholder="Example: Senior Laravel Developer" value="{{old('name')}}"/>
+                @error('name')
                     <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                 @enderror
             </div>
@@ -61,7 +61,7 @@
 
             <div class="mb-6">
                 <label for="logo" class="inline-block text-lg mb-2">
-                    Company Logo
+                    Event Logo
                 </label>
                 <input type="file" class="border border-gray-200 rounded p-2 w-full" name="logo"/>
                 @error('logo')

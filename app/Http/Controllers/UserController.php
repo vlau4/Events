@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     // Show Register/Create Form
     public function create() {
-        return view('users.register');
+        return view('roles.user.register');
     }
 
     // Create New User
@@ -43,7 +43,7 @@ class UserController extends Controller
 
     // Show Login Form
     public function login(Request $request) {
-        return view('users.login');   
+        return view('roles.user.login');   
     }
 
     // Log In USer
@@ -60,4 +60,14 @@ class UserController extends Controller
         
         return back()->withErrors(['email' => 'Invalid Credentials'])->onlyInput('email');
     }
+
+    // Manage Users
+    public function manage() {
+        return view('roles.admin.manage-users', ['users' => request()->user()->get()]);
+    }
+
+    // Edit User Role
+    // public function edit() {
+    //     return view('', ['users' => request()->user()->get()]);
+    // }
 }

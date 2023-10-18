@@ -10,7 +10,7 @@ class Event extends Model
 {
     use HasFactory;
 
-    // protected $fillable = ['title', 'company', 'location', 'website', 'email', 'tags', 'description'];
+    // protected $fillable = ['name', 'category', 'location', 'website', 'email', 'tags', 'description'];
 
     public function scopeFilter($query, array $filters) {
         if($filters['tag'] ?? false) {
@@ -18,7 +18,7 @@ class Event extends Model
         }
 
         if($filters['search'] ?? false) {
-            $query->where('title', 'like', '%' . request('search') . '%')
+            $query->where('name', 'like', '%' . request('search') . '%')
                 ->orwhere('description', 'like', '%' . request('search') . '%')
                 ->orwhere('tags', 'like', '%' . request('search') . '%');
         }
