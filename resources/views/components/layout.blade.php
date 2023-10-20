@@ -35,6 +35,12 @@
                 </span>
             </li>
             <li>
+                <a href="/locations" class="hover:text-laravel">Locations</a>
+            </li>
+            <li>
+                <a href="/categories" class="hover:text-laravel">Categories</a>
+            </li>
+            <li>
                 <a href="/users/manage" class="hover:text-laravel"><i class="fa-solid fa-gear"></i> Manage Users</a>
             </li>
             <li>
@@ -69,7 +75,7 @@
         text-white h-24 mt-24 opacity-90 md:justify-center">
         <p class="ml-2">Copyright &copy; 2022, All Rights reserved</p>
 
-        <a href="/events/create" class="absolute top-1/3 right-10 bg-black text-white py-2 px-5">Post Job</a>
+        <a href="/events/create" class="absolute top-1/3 right-10 bg-black text-white py-2 px-5">Post Event</a>
     </footer>
     <x-flash-message></x-flash-message>
 </body>

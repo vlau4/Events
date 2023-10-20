@@ -7,10 +7,10 @@
                 <img class="w-48 mr-6 mb-6" src="{{$event->logo ? asset('storage/' . $event->logo) : asset('/images/no-image.png')}}" alt=""/>
 
                 <h3 class="text-2xl mb-2">{{$event->name}}</h3>
-                <div class="text-xl font-bold mb-4">{{$event->category}}</div>
+                <div class="text-xl font-bold mb-4">{{$event->category->name}}</div>
                 <x-event-tags  :tagsCsv="$event->tags" />
                 <div class="text-lg my-4">
-                    <i class="fa-solid fa-location-dot"></i>{{$event->location}}
+                    <i class="fa-solid fa-location-dot"></i> {{$event->location->street}} {{$event->location->number}}, {{$event->location->city}}, {{$event->location->country}}
                 </div>
                 <div class="border border-gray-200 w-full mb-6"></div>
                 <div>

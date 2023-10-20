@@ -5,6 +5,8 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\User;
 use App\Models\Event;
+use App\Models\Category;
+use App\Models\Location;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,8 +16,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(5)->create();
-
         $user = User::factory()->create([
             'name' => 'Admin',
             'email' => 'admin@admin.com',
@@ -23,13 +23,21 @@ class DatabaseSeeder extends Seeder
             'role' => 2
         ]);
 
-        Event::factory(6)->create([
-            'user_id' => $user->id
+        $category = Category::factory()->create([
+            'name' => 'food'
         ]);
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $location = Location::factory()->create([
+            'street' => 'Kvetinkova',
+            'number' => '22',
+            'city' => 'Brno',
+            'zip' => '60200'
+        ]);
+
+        Event::factory(6)->create([
+            'user_id' => $user->id,
+            'category_id' => $category->id,
+            'location_id' => $location->id
+        ]);
     }
 }

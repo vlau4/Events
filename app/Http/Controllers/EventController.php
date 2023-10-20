@@ -32,10 +32,8 @@ class EventController extends Controller
     public function store(Request $request) {
         $formFields = $request->validate([
             'name' => 'required',
-            'category' => ['required'],
-            'location' => 'required',
-            'website' => ['required', 'regex:/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i'],
-            'email' => ['required', 'email'],
+            // 'category_id' => 'required',
+            // 'location_id' => 'required',
             'tags' => 'required',
             'description' => 'required'
         ]);
@@ -45,6 +43,9 @@ class EventController extends Controller
         }
 
         $formFields['user_id'] = auth()->id();
+        // THIS HAVE TO BE DELETED
+        $formFields['category_id'] = 1;
+        $formFields['location_id'] = 1;
 
         Event::create($formFields);
 
@@ -65,8 +66,8 @@ class EventController extends Controller
         
         $formFields = $request->validate([
             'name' => 'required',
-            'caterory' => ['required'],
-            'location' => 'required',
+            'caterory_id' => 'required',
+            'location_id' => 'required',
             'website' => ['required', 'regex:/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i'],
             'email' => ['required', 'email'],
             'tags' => 'required',
